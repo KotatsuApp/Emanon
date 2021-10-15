@@ -8,7 +8,7 @@ import kadal
 from dateutil.parser import parse
 
 
-class TachiBoti(discord.Client):
+class KotatsuBot(discord.Client):
     def __init__(self):
         super().__init__()
         # Note: this uses an OR regex hack.
@@ -18,7 +18,6 @@ class TachiBoti(discord.Client):
             "anime": re.compile(r"`[\s\S]*?`|{(.*?)}"),
             "manga": re.compile(r"<.*?https?:\/\/.*?>|<a?:.+?:\d*>|`[\s\S]*?`|<(.*?)>")
         }
-        self.tachi_id = 349436576037732353
         self.klient = kadal.Klient(loop=self.loop)
         self.anilist_cover_url = "https://img.anili.st/media/"
 
@@ -96,22 +95,8 @@ class TachiBoti(discord.Client):
         print("~-~-~-~-~-~-~-~-~-~-~")
         print("Ready!")
 
-    async def on_member_join(self, member):
-        if member.guild.id != self.tachi_id:
-            return
-        try:
-            await member.send("""
-Welcome to Tachiyomi!\n
-Before asking anything in <#349436576037732355>, please make sure to check the <#403520500443119619> channel, \
-there's a very high chance you won't even have to ask.
-Most if not all entries in <#403520500443119619> are up to date, \
-and the channel is updated regularly to reflect the status of extensions and the app in general.
-            """)  # noqa
-        except discord.errors.Forbidden:  # Can't DM member, give up.
-            pass
 
-
-bot = TachiBoti()
+bot = KotatsuBot()
 token = os.environ.get('TOKEN')
 if token is None:
     with open("token") as f:
