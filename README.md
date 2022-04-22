@@ -1,2 +1,2 @@
 # Kotatsu-bot
-A basic manga bot for the Kotatsu Discord server (in future).
+A basic manga bot for the Kotatsu Discord server.
